@@ -1,5 +1,4 @@
 require_relative 'app'
-
 class Menu
   def initialize(app)
     @app = app
