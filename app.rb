@@ -1,5 +1,5 @@
 require_relative 'menu'
-require_relative './classes/music_album'
+require_relative 'classes/music_album'
 class App
   attr_accessor :books, :music_albums, :genres, :games, :labels, :authors
 
@@ -28,7 +28,7 @@ class App
     genre = gets.chomp
 
     matching_albums = @music_albums.select { |album| album.genre == genre }
-    
+
     if matching_albums.empty?
       puts "No music albums found for the genre: #{genre}"
     else
@@ -38,7 +38,6 @@ class App
       end
     end
   end
-
 
   def add_music_album
     puts 'Enter the details of the music album:'
