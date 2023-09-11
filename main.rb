@@ -8,9 +8,11 @@ end
 
 def main
   welcome
-  App.new
-  menu = Menu.new
-  puts menu.options
+  app = App.new
+  menu = Menu.new(app)
+  loop do
+    menu.start
+  end
 end
 
 main
