@@ -9,8 +9,4 @@ class App
     @labels = []
     @authors = []
   end
-
-  def list_all_books
-    puts 'Book is empty'
-  end
 end
