@@ -1,6 +1,5 @@
 require_relative 'app'
 
-
 App.new
 class Menu
   def options
