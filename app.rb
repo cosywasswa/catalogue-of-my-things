@@ -112,7 +112,6 @@ class App
     Author.new(first_name, last_name)
     GameDetails.new(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
 
-
     store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
 
     puts 'Game Created Successfully'
