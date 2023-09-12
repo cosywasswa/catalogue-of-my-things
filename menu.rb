@@ -26,7 +26,7 @@ class Menu
 
       case choice
       when 1
-        @app.list_all_books
+        @app.book_detail(1)
       when 2
         @app.list_all_music_albums
       when 3
@@ -34,11 +34,11 @@ class Menu
       when 4
         @app.list_all_genres
       when 5
-        @app.list_all_labels
+        @app.book_detail(2)
       when 6
         @app.list_all_authors
       when 7
-        @app.add_a_book
+        @app.book_detail(3)
       when 8
         @app.add_music_album
       when 9
