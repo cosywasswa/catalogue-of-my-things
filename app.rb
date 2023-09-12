@@ -9,7 +9,6 @@ class App
   attr_accessor :id, :books, :music_albums, :genres, :games, :labels, :authors
 
   def initialize
-    @id = id
     @books = []
     @music_albums = []
     @genres = []
@@ -18,6 +17,8 @@ class App
     @authors = []
     load_authors
     load_games
+    load_music_albums
+    load_genres
   end
 
   def list_all_music_albums
@@ -26,7 +27,7 @@ class App
     else
       puts 'List of all music albums:'
       @music_albums.each do |album|
-        puts "ID: #{album.id}, #{album.title} by #{album.artist},\nGenre: #{album.genre}, Released: #{album.release_year}"
+        puts "#{album['title']} by #{album['artist']},\nGenre: #{album['genre']}, Released: #{album['release_year']}"
       end
     end
   end
@@ -35,7 +36,7 @@ class App
     puts 'No genres added it yet.' if @genres.empty?
     puts 'List of all genres:'
     @genres.each do |genre|
-      puts genre.name.capitalize
+      puts genre['name'].capitalize
     end
   end
 
@@ -59,13 +60,45 @@ class App
       genre: genre_name,
       archived: false
     }
-    new_genre = Genre.new(genre_name)
-    @genres << new_genre
+    Genre.new(genre_name)
 
-    new_music_album = MusicAlbum.new(music_album_info)
-    @music_albums << new_music_album
+    MusicAlbum.new(music_album_info)
+
+    save_music_albums(title, artist, genre_name, release_year)
+    save_genres(genre_name)
 
     puts 'Music album added successfully!'
+  end
+
+  def load_music_albums
+    music_album_data = JSON.parse(File.read('./DATABASE/music_albums.json'))
+    @music_albums = music_album_data
+  rescue JSON::ParserError => e
+    puts "Error parsing music_albums.json: #{e.message}"
+  end
+
+  def save_music_albums(title, artist, genre_name, release_year)
+    @music_albums << {
+      'title' => title,
+      'artist' => artist,
+      'genre' => genre_name,
+      'release_year' => release_year
+    }
+    File.write('./DATABASE/music_albums.json', JSON.pretty_generate(@music_albums))
+  end
+
+  def load_genres
+    genre_data = JSON.parse(File.read('./DATABASE/genres.json'))
+    @genres = genre_data
+  rescue JSON::ParserError => e
+    puts "Error parsing genres.json: #{e.message}"
+  end
+
+  def save_genres(genre_name)
+    @genres << {
+      'name' => genre_name
+    }
+    File.write('./DATABASE/genres.json', JSON.pretty_generate(@genres))
   end
 
   def load_authors
