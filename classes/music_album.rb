@@ -4,7 +4,6 @@ class MusicAlbum < Item
 
   def initialize(params)
     super(params[:publish_date], archived: params[:archived])
-    @id = Random.rand(1..1000)
     @title = params[:title]
     @artist = params[:artist]
     @release_year = params[:release_year]
