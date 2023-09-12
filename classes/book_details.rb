@@ -1,12 +1,14 @@
 require_relative 'label'
 require_relative 'book'
 require_relative '../menu'
+require 'json'
 
 class BookDetails
   attr_accessor :books
 
   def initialize
     @books = []
+    load_data_from_json
   end
 
   def display_options
@@ -63,6 +65,7 @@ class BookDetails
     @books << book
     @books << label
 
+    save_data_to_json
     puts "Added #{book.title} to your catalog."
   end
 
@@ -86,6 +89,29 @@ class BookDetails
       labels.each do |label|
         puts "Label title: #{label.title}, color: #{label.color}"
       end
+    end
+  end
+
+  private
+
+  def save_data_to_json
+    File.write('./DATABASE/books.json', JSON.pretty_generate(@books.map(&:to_json)))
+  end
+
+  def load_data_from_json
+    if File.exist?('./DATABASE/books.json')
+      books_file = File.read('./DATABASE/books.json')
+      if books_file.empty?
+        puts 'Book data file is empty.'
+      else
+        books_data = JSON.parse(books_file)
+        @books.clear
+        books_data.each do |book|
+          @books << Book.from_json(book)
+        end
+      end
+    else
+      puts 'No book data file found.'
     end
   end
 end
