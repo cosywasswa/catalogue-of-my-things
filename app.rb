@@ -3,7 +3,7 @@ require_relative 'classes/music_album'
 require_relative 'classes/music_genre'
 require_relative 'classes/item'
 require_relative 'classes/game'
-require_relative 'classes/game-details'
+require_relative 'classes/game_details'
 require_relative 'classes/author'
 class App
   attr_accessor :id, :books, :music_albums, :genres, :games, :labels, :authors
@@ -16,6 +16,8 @@ class App
     @games = []
     @labels = []
     @authors = []
+    load_authors
+    load_games
   end
 
   def list_all_music_albums
@@ -64,6 +66,24 @@ class App
     @music_albums << new_music_album
 
     puts 'Music album added successfully!'
+  end
+
+  def load_authors
+    begin
+      authors_data = JSON.parse(File.read('./DATABASE/author.json'))
+      @authors = authors_data
+    rescue JSON::ParserError => e
+      puts "Error parsing author.json: #{e.message}"
+    end
+  end
+  
+  def load_games
+    begin
+      games_data = JSON.parse(File.read('./DATABASE/games.json'))
+      @games = games_data
+    rescue JSON::ParserError => e
+      puts "Error parsing games.json: #{e.message}"
+    end
   end
 
   def list_of_games
@@ -129,6 +149,10 @@ class App
       'multiplayer' => multiplayer,
       'last_played_at' => last_played_at
     }
+
+    File.write('./DATABASE/author.json', JSON.pretty_generate(@authors))
+    File.write('./DATABASE/games.json', JSON.pretty_generate(@games))
+    puts "Authors data loaded: #{@authors}"
   end
 
   # rubocop:enable Metrics/ParameterLists
