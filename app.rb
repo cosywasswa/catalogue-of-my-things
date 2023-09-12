@@ -71,21 +71,21 @@ class App
 
   def list_of_games
     if @games.empty?
-        puts 'Oops! No available games, select 9 to add new game'
-      else
-        @games.each_with_index do |game, index|
-            puts "#{index + 1} '#{game['game_name']}' by #{game['first_name']}"
-        end
+      puts 'Oops! No available games, select 9 to add new game'
+    else
+      @games.each_with_index do |game, index|
+        puts "#{index + 1} '#{game['game_name']}' by #{game['first_name']}"
       end
+    end
   end
 
   def list_all_authors
     if @authors.empty?
-        puts 'oops there are no authors'
+      puts 'oops there are no authors'
     else
-       @authors.each do |author|
+      @authors.each do |author|
         puts "'#{author['first_name']} #{author['last_name']}'"
-       end
+      end
     end
   end
 
@@ -113,7 +113,7 @@ class App
     GameDetails.new(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
 
 
- store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+    store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
 
     puts 'Game Created Successfully'
   end
