@@ -3,8 +3,10 @@ require_relative 'classes/music_album'
 require_relative 'classes/game'
 require_relative 'classes/game_details'
 require_relative 'classes/author'
+require_relative 'classes/book_details'
+
 class App
-  attr_accessor :books, :music_albums, :genres, :games, :labels, :authors
+  attr_accessor :books, :music_albums, :genres, :games, :labels, :authors, :book_details
 
   def initialize
     @books = []
@@ -13,6 +15,7 @@ class App
     @games = []
     @labels = []
     @authors = []
+    @book_details = BookDetails.new
   end
 
   def list_all_music_albums
@@ -86,6 +89,17 @@ class App
       @authors.each do |author|
         puts "'#{author['first_name']} #{author['last_name']}'"
       end
+    end
+  end
+
+  def book_detail(test)
+    case test
+    when 1
+      @book_details.list_all_books
+    when 2
+      @book_details.list_labels
+    when 3
+      @book_details.add_a_book
     end
   end
 
