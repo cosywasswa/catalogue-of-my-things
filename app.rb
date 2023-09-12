@@ -16,6 +16,8 @@ class App
     @games = []
     @labels = []
     @authors = []
+    load_authors
+    load_games
   end
 
   def list_all_music_albums
@@ -64,6 +66,20 @@ class App
     @music_albums << new_music_album
 
     puts 'Music album added successfully!'
+  end
+
+  def load_authors
+    authors_data = JSON.parse(File.read('./DATABASE/author.json'))
+    @authors = authors_data
+  rescue JSON::ParserError => e
+    puts "Error parsing author.json: #{e.message}"
+  end
+
+  def load_games
+    games_data = JSON.parse(File.read('./DATABASE/games.json'))
+    @games = games_data
+  rescue JSON::ParserError => e
+    puts "Error parsing games.json: #{e.message}"
   end
 
   def list_of_games
@@ -129,6 +145,10 @@ class App
       'multiplayer' => multiplayer,
       'last_played_at' => last_played_at
     }
+
+    File.write('./DATABASE/author.json', JSON.pretty_generate(@authors))
+    File.write('./DATABASE/games.json', JSON.pretty_generate(@games))
+    puts "Authors data loaded: #{@authors}"
   end
 
   # rubocop:enable Metrics/ParameterLists
