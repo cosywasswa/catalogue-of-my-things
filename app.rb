@@ -69,21 +69,17 @@ class App
   end
 
   def load_authors
-    begin
-      authors_data = JSON.parse(File.read('./DATABASE/author.json'))
-      @authors = authors_data
-    rescue JSON::ParserError => e
-      puts "Error parsing author.json: #{e.message}"
-    end
+    authors_data = JSON.parse(File.read('./DATABASE/author.json'))
+    @authors = authors_data
+  rescue JSON::ParserError => e
+    puts "Error parsing author.json: #{e.message}"
   end
-  
+
   def load_games
-    begin
-      games_data = JSON.parse(File.read('./DATABASE/games.json'))
-      @games = games_data
-    rescue JSON::ParserError => e
-      puts "Error parsing games.json: #{e.message}"
-    end
+    games_data = JSON.parse(File.read('./DATABASE/games.json'))
+    @games = games_data
+  rescue JSON::ParserError => e
+    puts "Error parsing games.json: #{e.message}"
   end
 
   def list_of_games
