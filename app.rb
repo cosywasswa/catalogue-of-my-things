@@ -118,6 +118,7 @@ class App
     puts 'Game Created Successfully'
   end
 
+  # rubocop:disable Metrics/ParameterLists
   def store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
     @authors << {
       'first_name' => first_name,
@@ -134,6 +135,7 @@ class App
     }
   end
 
+  # rubocop:enable Metrics/ParameterLists
   def true_or_false(bool)
     case bool
     when 'y'
