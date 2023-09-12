@@ -1,14 +1,17 @@
 require_relative 'menu'
 require_relative 'classes/music_album'
+require_relative 'classes/music_genre'
+require_relative 'classes/item'
 require_relative 'classes/game'
 require_relative 'classes/game_details'
 require_relative 'classes/author'
 require_relative 'classes/book_details'
 
 class App
-  attr_accessor :books, :music_albums, :genres, :games, :labels, :authors, :book_details
+  attr_accessor :id, :books, :music_albums, :genres, :games, :labels, :authors, :book_details
 
   def initialize
+    @id = id
     @books = []
     @music_albums = []
     @genres = []
@@ -16,6 +19,8 @@ class App
     @labels = []
     @authors = []
     @book_details = BookDetails.new
+    load_authors
+    load_games
   end
 
   def list_all_music_albums
@@ -24,24 +29,16 @@ class App
     else
       puts 'List of all music albums:'
       @music_albums.each do |album|
-        puts "#{album.title} by #{album.artist}, Released: #{album.release_year}"
+        puts "ID: #{album.id}, #{album.title} by #{album.artist},\nGenre: #{album.genre}, Released: #{album.release_year}"
       end
     end
   end
 
   def list_all_genres
-    puts 'Enter the genre to list music albums:'
-    genre = gets.chomp
-
-    matching_albums = @music_albums.select { |album| album.genre == genre }
-
-    if matching_albums.empty?
-      puts "No music albums found for the genre: #{genre}"
-    else
-      puts "Music albums in the #{genre} genre:"
-      matching_albums.each do |album|
-        puts "#{album.title} by #{album.artist}, Released: #{album.release_year}"
-      end
+    puts 'No genres added it yet.' if @genres.empty?
+    puts 'List of all genres:'
+    @genres.each do |genre|
+      puts genre.name.capitalize
     end
   end
 
@@ -52,7 +49,7 @@ class App
     print 'Artist: '
     artist = gets.chomp
     print 'Genre: '
-    genre = gets.chomp
+    genre_name = gets.chomp
     print 'Release Year: '
     release_year = gets.chomp.to_i
 
@@ -62,14 +59,30 @@ class App
       release_year: release_year,
       on_spotify: true,
       publish_date: Time.now.strftime('%Y-%m-%d'),
-      genre: genre,
+      genre: genre_name,
       archived: false
     }
+    new_genre = Genre.new(genre_name)
+    @genres << new_genre
 
     new_music_album = MusicAlbum.new(music_album_info)
     @music_albums << new_music_album
 
     puts 'Music album added successfully!'
+  end
+
+  def load_authors
+    authors_data = JSON.parse(File.read('./DATABASE/author.json'))
+    @authors = authors_data
+  rescue JSON::ParserError => e
+    puts "Error parsing author.json: #{e.message}"
+  end
+
+  def load_games
+    games_data = JSON.parse(File.read('./DATABASE/games.json'))
+    @games = games_data
+  rescue JSON::ParserError => e
+    puts "Error parsing games.json: #{e.message}"
   end
 
   def list_of_games
@@ -146,6 +159,10 @@ class App
       'multiplayer' => multiplayer,
       'last_played_at' => last_played_at
     }
+
+    File.write('./DATABASE/author.json', JSON.pretty_generate(@authors))
+    File.write('./DATABASE/games.json', JSON.pretty_generate(@games))
+    puts "Authors data loaded: #{@authors}"
   end
 
   # rubocop:enable Metrics/ParameterLists

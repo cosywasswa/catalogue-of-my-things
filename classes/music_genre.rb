@@ -1,10 +1,7 @@
-require_relative 'item'
-
-class Genre < Item
+class Genre
   attr_accessor :name, :music_albums
 
   def initialize(name)
-    super()
     @name = name
     @music_albums = []
   end
