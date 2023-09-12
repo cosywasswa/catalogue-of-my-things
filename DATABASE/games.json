@@ -1,0 +1,10 @@
+[
+  {
+    "game_name": "Chess",
+    "first_name": "Johnson",
+    "last_name": "Doe",
+    "publish_date": "2010-10-10",
+    "multiplayer": false,
+    "last_played_at": "2023-12-10"
+  }
+]
