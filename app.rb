@@ -1,7 +1,5 @@
 require_relative 'menu'
 require_relative 'classes/music_album'
-require_relative 'classes/music_genre'
-require_relative 'classes/item'
 class App
   attr_accessor :id, :books, :music_albums, :genres, :games, :labels, :authors
 
@@ -61,6 +59,81 @@ class App
     @music_albums << new_music_album
 
     puts 'Music album added successfully!'
+  end
+
+  def list_of_games
+    if @games.empty?
+      puts 'Oops! No available games, select 9 to add new game'
+    else
+      @games.each_with_index do |game, index|
+        puts "#{index + 1} '#{game['game_name']}' by #{game['first_name']}"
+      end
+    end
+  end
+
+  def list_all_authors
+    if @authors.empty?
+      puts 'oops there are no authors'
+    else
+      @authors.each do |author|
+        puts "'#{author['first_name']} #{author['last_name']}'"
+      end
+    end
+  end
+
+  def add_a_game
+    print 'Enter game name: '
+    game_name = gets.chomp
+
+    print 'Enter author first_name: '
+    first_name = gets.chomp
+
+    print 'Enter author last_name: '
+    last_name = gets.chomp
+
+    print 'Enter the publish date [YYYY-MM-DD]: '
+    publish_date = gets.chomp
+
+    print 'Is it a multiplayer? [Y/N]: '
+    player = gets.chomp.downcase
+    multiplayer = true_or_false(player)
+
+    print 'It was last played at [YYYY-MM-DD]: '
+    last_played_at = gets.chomp
+
+    Author.new(first_name, last_name)
+    GameDetails.new(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+
+    store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+
+    puts 'Game Created Successfully'
+  end
+
+  # rubocop:disable Metrics/ParameterLists
+  def store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+    @authors << {
+      'first_name' => first_name,
+      'last_name' => last_name
+    }
+
+    @games << {
+      'game_name' => game_name,
+      'first_name' => first_name,
+      'last_name' => last_name,
+      'publish_date' => publish_date,
+      'multiplayer' => multiplayer,
+      'last_played_at' => last_played_at
+    }
+  end
+
+  # rubocop:enable Metrics/ParameterLists
+  def true_or_false(bool)
+    case bool
+    when 'y'
+      true
+    when 'n'
+      false
+    end
   end
 
   def exit_app
