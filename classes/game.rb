@@ -16,6 +16,6 @@ class Game < Item
     @now = Date.today
     @date = Date.parse(@last_played_at)
     @last_played = ((@now - @date) / 365).floor
-    supper && @last_played > 2
+    super && @last_played > 2
   end
 end
