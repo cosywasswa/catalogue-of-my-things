@@ -58,7 +58,7 @@ In this project, we created a console app that will help you to keep a record of
 
 ## Video
 ## 🚀 Presentation Video <a name="video"></a>
-[Video]()
+[Video](https://drive.google.com/file/d/1JagHoPcaZxne6Iw0RHYoZdi5WJVYOqAJ/view?usp=sharing)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
