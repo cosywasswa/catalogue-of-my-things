@@ -36,11 +36,11 @@ class App
   end
 
   def list_all_genres
-  puts 'No genres added it yet.' if @genres.empty?
-  puts 'List of all genres:'
-  genre_names = @genres.map { |genre| "'#{genre['name'].capitalize}'" }
-  puts "(#{genre_names.join(', ')})"
-end
+    puts 'No genres added it yet.' if @genres.empty?
+    puts 'List of all genres:'
+    genre_names = @genres.map { |genre| "'#{genre['name'].capitalize}'" }
+    puts "(#{genre_names.join(', ')})"
+  end
 
   def add_music_album
     puts 'Enter the details of the music album:'
