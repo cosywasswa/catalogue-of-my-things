@@ -169,16 +169,40 @@ class App
     print 'It was last played at [YYYY-MM-DD]: '
     last_played_at = gets.chomp
 
-    Author.new(first_name, last_name)
-    GameDetails.new(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+    games_info = {
+      game_name: game_name,
+      first_name: first_name,
+      last_name: last_name,
+      publish_date: publish_date,
+      multiplayer: multiplayer,
+      last_played_at: last_played_at
+    }
 
-    store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+    Author.new(first_name, last_name)
+    GameDetails.new(games_info)
+
+    data = {
+      'game_name' => game_name,
+      'first_name' => first_name,
+      'last_name' => last_name,
+      'publish_date' => publish_date,
+      'multiplayer' => multiplayer,
+      'last_played_at' => last_played_at
+    }
+
+    store_to_array(data)
 
     puts 'Game Created Successfully'
   end
 
-  # rubocop:disable Metrics/ParameterLists
-  def store_to_array(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
+  def store_to_array(data)
+    game_name = data['game_name']
+    first_name = data['first_name']
+    last_name = data['last_name']
+    publish_date = data['publish_date']
+    multiplayer = data['multiplayer']
+    last_played_at = data['last_played_at']
+
     @authors << {
       'first_name' => first_name,
       'last_name' => last_name
@@ -195,10 +219,8 @@ class App
 
     File.write('./DATABASE/author.json', JSON.pretty_generate(@authors))
     File.write('./DATABASE/games.json', JSON.pretty_generate(@games))
-    puts "Authors data loaded: #{@authors}"
   end
 
-  # rubocop:enable Metrics/ParameterLists
   def true_or_false(bool)
     case bool
     when 'y'

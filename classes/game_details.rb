@@ -5,12 +5,11 @@ class GameDetails < Game
 
   attr_accessor :game_name, :first_name, :last_name
 
-  # rubocop:disable Metrics/ParameterLists
-  def initialize(game_name, first_name, last_name, publish_date, multiplayer, last_played_at)
-    super(publish_date, multiplayer, last_played_at)
-    @game_name = game_name
-    @first_name = first_name
-    @last_name = last_name
+  def initialize(params)
+    super(params[:publish_date], params[:multiplayer], params[:last_played_at])
+    @game_name = params[:game_name]
+    @first_name = params[:first_name]
+    @last_name = params[:last_name]
 
     self.class.games << self
   end
@@ -19,4 +18,3 @@ class GameDetails < Game
     attr_reader :games
   end
 end
-# rubocop:enable Metrics/ParameterLists
