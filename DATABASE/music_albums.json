@@ -10,11 +10,5 @@
     "artist": "artist_album",
     "genre": "Rap",
     "release_year": 2021
-  },
-  {
-    "title": "balobalo",
-    "artist": "jim",
-    "genre": "pop",
-    "release_year": 2022
   }
 ]
