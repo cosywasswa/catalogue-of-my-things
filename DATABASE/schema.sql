@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXIST music_albums (
 --- Create games table
 
 CREATE TABLE games(
-  id INT, 
-  publish_date DATE, 
-  multiplayer BOOLEAN, 
-  last_played_at DATE, 
+  id INT,
+  publish_date DATE,
+  multiplayer BOOLEAN,
+  last_played_at DATE,
   author_id INT REFERENCES authors(id)
   PRIMARY KEY(id)
  );
@@ -37,7 +37,8 @@ CREATE TABLE games(
   PRIMARY KEY(id)
  );
 
-  --- Create labels table
+--- Create labels table
+
 
 CREATE TABLE Label (
   id int generated always as identity,
