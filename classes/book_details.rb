@@ -110,35 +110,35 @@ class BookDetails
   end
 
   def load_data_from_json
-    if File.exist?('./DATABASE/books.json')
-      books_file = File.read('./DATABASE/books.json')
-      if books_file.empty?
-        puts 'Book data file is empty.'
-      else
-        books_data = JSON.parse(books_file)
-        @books.clear
-        books_data.each do |book|
-          @books << Book.from_json(book)
-        end
+    return unless File.exist?('./DATABASE/books.json')
+
+    books_file = File.read('./DATABASE/books.json')
+    if books_file.empty?
+      puts 'Book data file is empty.'
+    else
+      books_data = JSON.parse(books_file)
+      @books.clear
+      books_data.each do |book|
+        @books << Book.from_json(book)
       end
+    end
     # else
     #   puts 'No book data file found.'
-    end
   end
 
   def load_labels_from_json
-    if File.exist?('./DATABASE/labels.json')
-      labels_file = File.read('./DATABASE/labels.json')
-      if labels_file.empty?
-        puts 'Label data file is empty.'
-      else
-        labels_data = JSON.parse(labels_file)
-        labels_data.each do |label|
-          @books << Label.from_json(label)
-        end
+    return unless File.exist?('./DATABASE/labels.json')
+
+    labels_file = File.read('./DATABASE/labels.json')
+    if labels_file.empty?
+      puts 'Label data file is empty.'
+    else
+      labels_data = JSON.parse(labels_file)
+      labels_data.each do |label|
+        @books << Label.from_json(label)
       end
+    end
     # else
     #   puts 'No label data file found.'
-    end
   end
 end
