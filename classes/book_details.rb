@@ -8,7 +8,9 @@ class BookDetails
 
   def initialize
     @books = []
-    load_data_from_json
+    @labels = []
+    load_books
+    load_labels
   end
 
   def display_options
@@ -62,10 +64,8 @@ class BookDetails
     label = Label.new(title, color)
     label.add_item(book)
     book.label = label
-    @books << book
-    @books << label
 
-    save_data_to_json
+    save_data_to_json(title, publisher, cover_state, publish_date, color)
     puts "Added #{book.title} to your catalog."
   end
 
@@ -74,44 +74,52 @@ class BookDetails
       puts 'You have no books in your catalog.'
     else
       @books.each do |item|
-        next if item.is_a?(Label)
-
-        puts "publisher: #{item.publisher}, cover state: #{item.cover_state}, publish date: #{item.publish_date}"
+        puts "publisher: #{item['publisher']}, cover state: #{item['cover_state']}, publish date: #{item['publish_date']}"
       end
     end
   end
 
   def list_labels
-    labels = @books.select { |item| item.is_a?(Label) }.uniq
-    if labels.empty?
+    if @labels.empty?
       puts 'You have no labels in your catalog.'
     else
-      labels.each do |label|
-        puts "Label title: #{label.title}, color: #{label.color}"
+      @labels.each do |label|
+        print "'#{label['title']}', '#{label['color']}'"
+        puts ''
       end
     end
   end
 
   private
 
-  def save_data_to_json
-    File.write('./DATABASE/books.json', JSON.pretty_generate(@books.map(&:to_json)))
+  def save_data_to_json(title, publisher, cover_state, publish_date, color)
+    @books << {
+      'title' => title,
+      'publisher' => publisher,
+      'cover_state' => cover_state,
+      'publish_date' => publish_date
+
+    }
+
+    @labels << {
+      'title' => title,
+      'color' => color
+    }
+    File.write('./DATABASE/books.json', JSON.pretty_generate(@books))
+    File.write('./DATABASE/labels.json', JSON.pretty_generate(@labels))
   end
 
-  def load_data_from_json
-    if File.exist?('./DATABASE/books.json')
-      books_file = File.read('./DATABASE/books.json')
-      if books_file.empty?
-        puts 'Book data file is empty.'
-      else
-        books_data = JSON.parse(books_file)
-        @books.clear
-        books_data.each do |book|
-          @books << Book.from_json(book)
-        end
-      end
-    else
-      puts 'No book data file found.'
-    end
+  def load_books
+    data_books = JSON.parse(File.read('./DATABASE/books.json'))
+    @books = data_books
+  rescue JSON::ParserError => e
+    puts "Error parsing books.json: #{e.message}"
+  end
+
+  def load_labels
+    data_labels = JSON.parse(File.read('./DATABASE/labels.json'))
+    @labels = data_labels
+  rescue JSON::ParserError => e
+    puts "Error parsing labels.json: #{e.message}"
   end
 end

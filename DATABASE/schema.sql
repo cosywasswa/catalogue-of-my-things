@@ -37,7 +37,8 @@ CREATE TABLE games(
   PRIMARY KEY(id)
  );
 
- --- Create labels table
+--- Create labels table
+
 
 CREATE TABLE Label (
   id int generated always as identity,

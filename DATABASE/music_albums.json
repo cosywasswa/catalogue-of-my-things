@@ -10,5 +10,17 @@
     "artist": "artist_album",
     "genre": "Rap",
     "release_year": 2021
+  },
+  {
+    "title": "run",
+    "artist": "gold",
+    "genre": "pop",
+    "release_year": 2012
+  },
+  {
+    "title": "generals",
+    "artist": "john",
+    "genre": "rap",
+    "release_year": 2023
   }
 ]
