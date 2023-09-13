@@ -1,4 +1,10 @@
 [
-  "{\"id\":353,\"title\":\"The Fur Coat\",\"publisher\":\"Troos\",\"cover_state\":\"good\",\"publish_date\":\"2012-12-12\"}",
-  "\"#<Label:0x00000227a3c89138>\""
+  "{\"id\":213,\"title\":\"The Fur Coat\",\"publisher\":\"Troos\",\"cover_state\":\"good\",\"publish_date\":\"2012-12-12\"}",
+  "{\"id\":696,\"title\":null,\"publisher\":null,\"cover_state\":null,\"publish_date\":null}",
+  "{\"id\":749,\"title\":\"Dea\",\"publisher\":\"Dizz\",\"cover_state\":\"good\",\"publish_date\":\"2012-1212\"}",
+  "{\"id\":20,\"title\":null,\"publisher\":null,\"cover_state\":null,\"publish_date\":null}",
+  "{\"id\":7,\"title\":\"Demanae\",\"publisher\":\"Demazanae\",\"cover_state\":\"good\",\"publish_date\":\"2012-12-12\"}",
+  "{\"id\":363,\"title\":null,\"publisher\":null,\"cover_state\":null,\"publish_date\":null}",
+  "{\"id\":291,\"title\":\"Book 1\",\"publisher\":\"Author 1\",\"cover_state\":\"good\",\"publish_date\":\"2012-12-12\"}",
+  "\"#<Label:0x00000218c13f6c50>\""
 ]
