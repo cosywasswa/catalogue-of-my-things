@@ -9,6 +9,7 @@ class BookDetails
   def initialize
     @books = []
     load_data_from_json
+    load_labels_from_json
   end
 
   def display_options
@@ -62,10 +63,13 @@ class BookDetails
     label = Label.new(title, color)
     label.add_item(book)
     book.label = label
+
+    @books.reject! { |item| item.title == title }
     @books << book
     @books << label
 
     save_data_to_json
+    save_labels_to_json
     puts "Added #{book.title} to your catalog."
   end
 
@@ -74,7 +78,7 @@ class BookDetails
       puts 'You have no books in your catalog.'
     else
       @books.each do |item|
-        next if item.is_a?(Label)
+        next if item.is_a?(Label) || !item.is_a?(Book)
 
         puts "publisher: #{item.publisher}, cover state: #{item.cover_state}, publish date: #{item.publish_date}"
       end
@@ -99,6 +103,12 @@ class BookDetails
     File.write('./DATABASE/books.json', JSON.pretty_generate(@books.map(&:to_json)))
   end
 
+  def save_labels_to_json
+    labels = @books.select { |item| item.is_a?(Label) }.uniq
+    labels_data = labels.map(&:to_json)
+    File.write('./DATABASE/labels.json', JSON.pretty_generate(labels_data))
+  end
+
   def load_data_from_json
     if File.exist?('./DATABASE/books.json')
       books_file = File.read('./DATABASE/books.json')
@@ -111,8 +121,24 @@ class BookDetails
           @books << Book.from_json(book)
         end
       end
-    else
-      puts 'No book data file found.'
+    # else
+    #   puts 'No book data file found.'
+    end
+  end
+
+  def load_labels_from_json
+    if File.exist?('./DATABASE/labels.json')
+      labels_file = File.read('./DATABASE/labels.json')
+      if labels_file.empty?
+        puts 'Label data file is empty.'
+      else
+        labels_data = JSON.parse(labels_file)
+        labels_data.each do |label|
+          @books << Label.from_json(label)
+        end
+      end
+    # else
+    #   puts 'No label data file found.'
     end
   end
 end
