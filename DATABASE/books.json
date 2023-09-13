@@ -1,6 +1,4 @@
 [
-  "{\"id\":8,\"title\":\"anger\",\"publisher\":\"hen\",\"cover_state\":\"bad\",\"publish_date\":\"2020-10-10\"}",
-  "{\"id\":104,\"title\":null,\"publisher\":null,\"cover_state\":null,\"publish_date\":null}",
-  "{\"id\":795,\"title\":\"forward\",\"publisher\":\"sam\",\"cover_state\":\"good\",\"publish_date\":\"2010-10-10\"}",
-  "\"#<Label:0x0000023ef5d85870>\""
+  "{\"id\":76,\"title\":\"Beloved\",\"publisher\":\"Toni Morrison\",\"cover_state\":\"good\",\"publish_date\":\"2008-08-08\"}",
+  "{\"title\":\"Beloved\",\"color\":\"cyan\"}"
 ]
