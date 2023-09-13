@@ -87,7 +87,8 @@ class BookDetails
       puts 'You have no labels in your catalog.'
     else
       labels.each do |label|
-        puts "Label title: #{label.title}, color: #{label.color}"
+        print "'#{label.title}', '#{label.color}'"
+        puts ''
       end
     end
   end

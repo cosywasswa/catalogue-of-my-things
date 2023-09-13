@@ -1,4 +1,6 @@
 [
-  "{\"id\":353,\"title\":\"The Fur Coat\",\"publisher\":\"Troos\",\"cover_state\":\"good\",\"publish_date\":\"2012-12-12\"}",
-  "\"#<Label:0x00000227a3c89138>\""
+  "{\"id\":8,\"title\":\"anger\",\"publisher\":\"hen\",\"cover_state\":\"bad\",\"publish_date\":\"2020-10-10\"}",
+  "{\"id\":104,\"title\":null,\"publisher\":null,\"cover_state\":null,\"publish_date\":null}",
+  "{\"id\":795,\"title\":\"forward\",\"publisher\":\"sam\",\"cover_state\":\"good\",\"publish_date\":\"2010-10-10\"}",
+  "\"#<Label:0x0000023ef5d85870>\""
 ]

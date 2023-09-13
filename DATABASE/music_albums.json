@@ -10,23 +10,5 @@
     "artist": "artist_album",
     "genre": "Rap",
     "release_year": 2021
-  },
-  {
-    "title": "Camarade salut",
-    "artist": "Djanii Alfa",
-    "genre": "Rap",
-    "release_year": 2023
-  },
-  {
-    "title": "ti",
-    "artist": "rel",
-    "genre": "pop",
-    "release_year": 2021
-  },
-  {
-    "title": "title",
-    "artist": "artist",
-    "genre": "urban",
-    "release_year": 2010
   }
 ]
