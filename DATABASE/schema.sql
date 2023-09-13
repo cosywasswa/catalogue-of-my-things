@@ -20,10 +20,10 @@ CREATE TABLE IF NOT EXIST music_albums (
 --- Create games table
 
 CREATE TABLE games(
-  id INT, 
-  publish_date DATE, 
-  multiplayer BOOLEAN, 
-  last_played_at DATE, 
+  id INT,
+  publish_date DATE,
+  multiplayer BOOLEAN,
+  last_played_at DATE,
   author_id INT REFERENCES authors(id)
   PRIMARY KEY(id)
  );
@@ -36,3 +36,28 @@ CREATE TABLE games(
   last_name VARCHAR
   PRIMARY KEY(id)
  );
+
+ --- Create labels table
+
+CREATE TABLE Label (
+  id int generated always as identity,
+  title VARCHAR(255),
+  color VARCHAR(255),
+  publish_date date,
+  primary key (id)
+);
+
+--- Create books table
+
+CREATE TABLE Books (
+  id Int generated always as identity,
+  publisher varchar(255),
+  cover_status varchar(255),
+  publish_date date,
+  archived boolean,
+  label_id Int,
+  CONSTRAINT fk_label FOREIGN KEY (label_id) REFERENCES label(id),
+  PRIMARY KEY (id)
+);
+
+CREATE INDEX label_idx ON Books (label_id);
