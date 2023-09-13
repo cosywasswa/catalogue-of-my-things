@@ -1,3 +1,10 @@
 [
-  "{\"title\":\"Beloved\",\"color\":\"cyan\"}"
+  {
+    "title": "The War",
+    "color": "cyan"
+  },
+  {
+    "title": "The Bold",
+    "color": "magenta"
+  }
 ]

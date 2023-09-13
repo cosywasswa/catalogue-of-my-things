@@ -1,4 +1,14 @@
 [
-  "{\"id\":76,\"title\":\"Beloved\",\"publisher\":\"Toni Morrison\",\"cover_state\":\"good\",\"publish_date\":\"2008-08-08\"}",
-  "{\"title\":\"Beloved\",\"color\":\"cyan\"}"
+  {
+    "title": "The War",
+    "publisher": "Jones",
+    "cover_state": "good",
+    "publish_date": "1888-12-12"
+  },
+  {
+    "title": "The Bold",
+    "publisher": "Mike",
+    "cover_state": "good",
+    "publish_date": "1200-03-03"
+  }
 ]
