@@ -38,5 +38,13 @@
     "publish_date": "2010-10-10",
     "multiplayer": true,
     "last_played_at": "2023-09-10"
+  },
+  {
+    "game_name": "ludo",
+    "first_name": "wasswa",
+    "last_name": "cosmos",
+    "publish_date": "2010-10-10",
+    "multiplayer": true,
+    "last_played_at": "2023-12-12"
   }
 ]

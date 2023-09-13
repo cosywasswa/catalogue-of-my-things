@@ -10,5 +10,11 @@
     "publisher": "Mike",
     "cover_state": "good",
     "publish_date": "1200-03-03"
+  },
+  {
+    "title": "war",
+    "publisher": "tros",
+    "cover_state": "bad",
+    "publish_date": "2020-10-10"
   }
 ]
