@@ -6,5 +6,29 @@
     "publish_date": "2010-10-10",
     "multiplayer": false,
     "last_played_at": "2023-12-10"
+  },
+  {
+    "game_name": "ludo",
+    "first_name": "john",
+    "last_name": "doe",
+    "publish_date": "2010-10-10",
+    "multiplayer": false,
+    "last_played_at": "2022-10-10"
+  },
+  {
+    "game_name": "race",
+    "first_name": "davie",
+    "last_name": "luke",
+    "publish_date": "2010-10-10",
+    "multiplayer": false,
+    "last_played_at": "2020-12-10"
+  },
+  {
+    "game_name": "cars",
+    "first_name": "mary",
+    "last_name": "moe",
+    "publish_date": "2009-02-02",
+    "multiplayer": true,
+    "last_played_at": "2010-10-10"
   }
 ]
